@@ -24,6 +24,16 @@ def index(request):
     context = {'Tasks': tasks, 'data1':tasks_names, 'data2':tasks_number}
     return render(request, 'dash/index.html', context)
 
+def projects(request):
+    context = {}
+    return render(request, 'dash/projects.html', context)
+
+def about(request):
+    context = {}
+    return render(request, 'dash/about.html', context)
+
+
+
 
 def response_error_handler(request, exception=None):
     return HttpResponse('Error handler content', status=403)

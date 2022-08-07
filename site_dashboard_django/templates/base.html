@@ -1,5 +1,6 @@
-{% load static tailwind_tags %}
 {% load static %}
+{% load static tailwind_tags %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +13,12 @@
 		
 	</head>
 
-	<body>
+	<body class="bg-slate-200">
 
 
 
-		<nav class="bg-white shadow-lg">
+
+		<nav class="bg-white shadow-md">
 			<div class="max-w-6xl mx-auto px-4">
 				<div class="flex justify-between">
 					<div class="flex space-x-7">
@@ -29,15 +31,18 @@
 						</div>
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-1">
-							<a href="" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">Item 1</a>
-							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Item 2</a>
-							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Item 3</a>
-							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Item 4</a>
+							<!--py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold -->
+							<a href="{% url 'index' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Accueil</a>
+							<a href="{% url 'projects' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Projets</a>
+							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Sport</a>
+							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">ManyLinks</a>
+							<a href="{% url 'about' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">A propos</a>
+
 						</div>
 					</div>
 					<!-- Secondary Navbar items -->
 					<div class="hidden md:flex items-center space-x-3 ">
-						<a href="{% url 'admin:index' %}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Admin</a>
+						<a href="{% url 'admin:index' %}" class="py-2 px-2 font-medium text-gray-500 rounded bg-slate-100 hover:bg-green-500 hover:text-white transition duration-300">Admin</a>
 					</div>
 					<!-- Mobile menu button -->
 					<div class="md:hidden flex items-center">
@@ -66,24 +71,64 @@
 					<li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 				</ul>
 			</div>
-			<script>
-				const btn = document.querySelector("button.mobile-menu-button");
-				const menu = document.querySelector(".mobile-menu");
-
-				btn.addEventListener("click", () => {
-					menu.classList.toggle("hidden");
-				});
-			</script>
+			
 		</nav>
 
 
 
 
-
-			
-         {% block content %}
+	<div class="bg-slate-100 mx-4 my-4 px-8 py-8 rounded-lg shadow-md">	
+      {% block content %}
          Body content
       {% endblock %}
+	</div>
 
+
+
+
+
+
+
+
+
+
+
+<!--
+	<footer class="text-center text-white pt-40" >
+
+	  
+		<div class="text-center text-gray-700 p-2 bg-slate-200">
+		  © 2021 Copyright:
+		  <a class="text-gray-800" href="https://www.linkedin.com/in/kamil-boudani/">Kamil Boudani</a>
+		</div>
+	  </footer>
+
+	-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+		const btn = document.querySelector("button.mobile-menu-button");
+		const menu = document.querySelector(".mobile-menu");
+
+		btn.addEventListener("click", () => {
+			menu.classList.toggle("hidden");
+		});
+	</script>
 	</body>
 </html>
