@@ -1,4 +1,5 @@
 
+from this import d
 from unicodedata import name
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
@@ -12,7 +13,9 @@ def index(request):
     #latest_question_list = Task.objects.order_by('-pub_date')[:5]
 
     tasks = Task.objects.all()
-    context = {'Tasks': tasks}
+    tasks_names = [t.name for t in Task.objects.all()]
+    tasks_number = [t.number for t in Task.objects.all()]
+    context = {'Tasks': tasks, 'data1':tasks_names, 'data2':tasks_number}
     return render(request, 'dash/index.html', context)
 
 

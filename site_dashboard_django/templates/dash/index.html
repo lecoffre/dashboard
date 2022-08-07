@@ -5,17 +5,54 @@ This is index title
 {% endblock title %}
 
 {% block content %}
-Main content of index.html
 
 
+{{data1}}
+{{data2}}
+<!--
 {% for task in Tasks %}
 {{task.name|lower}}
 {% endfor %}
+-->
 
 
 
+<div class="flex flex-row">
+    <div class="basis-3/4"><canvas class="p-10" id="chartLine"></canvas></div>
+    
+</div>
+</div>
+  
+  <!-- Required chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Chart line -->
+  <script>
 
-
+    const labels = {{data1|safe}};
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "My First dataset",
+          backgroundColor: "hsl(252, 82.9%, 67.8%)",
+          borderColor: "hsl(252, 82.9%, 67.8%)",
+          data: {{data2|safe}},
+        },
+      ],
+    };
+  
+    const configLineChart = {
+      type: "line",
+      data,
+      options: {},
+    };
+  
+    var chartLine = new Chart(
+      document.getElementById("chartLine"),
+      configLineChart
+    );
+  </script>
 
 
 

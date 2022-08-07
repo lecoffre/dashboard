@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('dash.urls')),
     #path('admin/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), #new
     path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls")),
 
 ]
