@@ -22,7 +22,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', include('dash.urls')),
     #path('admin/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), #new
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path("__reload__/", include("django_browser_reload.urls")),
 
 ]

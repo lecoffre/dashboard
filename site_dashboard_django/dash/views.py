@@ -4,9 +4,15 @@ from unicodedata import name
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.test import SimpleTestCase, override_settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import path
 from dash.models import Task
+
+
+def redirect_view(request):
+    
+    response = redirect('/dashboard/')
+    return response
 
 
 def index(request):
