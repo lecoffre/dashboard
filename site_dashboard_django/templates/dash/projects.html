@@ -6,11 +6,14 @@ Projets
 
 {% block content %}
 
-<h1 class="">Projets</h1>
+
+<div class="rounded-lg bg-slate-50 p-4 h-96">
+
+<h1 class="text-2xl">Projets</h1>
 <hr class="mb-4 mt-2">
 <div >
 {% for project in Projects %}
-<div class="shadow-sm rounded-lg px-4 py-2 bg-white grid  grid-cols-2 grid-rows-0 mb-4">
+<div class="shadow-md rounded-lg px-4 py-2 bg-white grid  grid-cols-2 grid-rows-0 mb-4">
 <a href="{% url 'project_detail' project_id=project.id %}"><h2 class="">{{project.name}}</h2></a>
 {% if project.status == "I" %}
 <div class=" grid grid-cols-3 "> <h2>En cours</h2><div class="rounded-full bg-green-400  w-4 h-4 my-auto"></div> </div>
@@ -27,6 +30,9 @@ Projets
 
 </div>
 {% endfor %}
+</div>
+
+
 </div>
 
 {% endblock content %}
