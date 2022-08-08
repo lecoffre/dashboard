@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.test import SimpleTestCase, override_settings
 from django.shortcuts import render, redirect
 from django.urls import path
-from dash.models import Task
+from dash.models import Task, Project
 
 
 def redirect_view(request):
@@ -25,8 +25,14 @@ def index(request):
     return render(request, 'dash/index.html', context)
 
 def projects(request):
-    context = {}
+    projects = Project.objects.all()
+    context = {'Projects': projects}
     return render(request, 'dash/projects.html', context)
+
+def project_detail(request, project_id):
+    project = Project.objects.get(pk=project_id)
+    context = {'Project': project}
+    return render(request, 'dash/project_detail.html', context)
 
 def about(request):
     context = {}

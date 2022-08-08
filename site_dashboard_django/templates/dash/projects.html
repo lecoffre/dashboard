@@ -7,6 +7,27 @@ Projets
 {% block content %}
 
 <h1 class="">Projets</h1>
+<hr class="mb-4 mt-2">
+<div >
+{% for project in Projects %}
+<div class="shadow-sm rounded-lg px-4 py-2 bg-white grid  grid-cols-2 grid-rows-0 mb-4">
+<a href="{% url 'project_detail' project_id=project.id %}"><h2 class="">{{project.name}}</h2></a>
+{% if project.status == "I" %}
+<div class=" grid grid-cols-3 "> <h2>En cours</h2><div class="rounded-full bg-green-400  w-4 h-4 my-auto"></div> </div>
+{% elif project.status == "N" %}
+<div class=" grid grid-cols-3 "> <h2>Nouveau</h2><div class="rounded-full bg-blue-400  w-4 h-4 my-auto"></div></div>
+{% elif project.status == "E" %}
+<div class=" grid grid-cols-3 "> <h2>Terminé</h2><div class="rounded-full bg-orange-400  w-4 h-4 my-auto"></div></div>
+{% elif project.status == "C" %}
+<div class=" grid grid-cols-3 "> <h2>Annulé</h2><div class="rounded-full bg-red-400  w-4 h-4 my-auto"></div></div>
+{% elif project.status == "S" %}
+<div class=" grid grid-cols-3 "> <h2>Suspendu</h2><div class="rounded-full bg-yellow-400  w-4 h-4 my-auto"></div></div>
+{% endif %}
+
+
+</div>
+{% endfor %}
+</div>
 
 {% endblock content %}
 
