@@ -7,7 +7,7 @@ from django.test import SimpleTestCase, override_settings
 from django.shortcuts import render, redirect
 from django.urls import path
 from dash.models import Task, Project
-
+from datetime import datetime
 
 def redirect_view(request):
     
@@ -21,7 +21,8 @@ def index(request):
     tasks = Task.objects.all()
     tasks_names = [t.name for t in Task.objects.all()]
     tasks_number = [t.number for t in Task.objects.all()]
-    context = {'Tasks': tasks, 'data1':tasks_names, 'data2':tasks_number}
+    projects = Project.objects.all()
+    context = {'Projects': projects,'Tasks': tasks, 'data1':tasks_names, 'data2':tasks_number, 'Now' : datetime.now().date().isoformat()}
     return render(request, 'dash/index.html', context)
 
 def projects(request):

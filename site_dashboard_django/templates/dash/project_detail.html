@@ -9,7 +9,15 @@ Projets
 <h1 class="">Projets</h1>
 <hr class="mb-4 mt-2">
 <div >{{Project}}</div>
-
+{{Project.pbl}} :
+{% for us in Project.pbl.us.all %}
+{{us.name}}
+{% endfor %}
+<hr>
+US {{Project}} : 
+{% for us in Project.us.all %}
+{{us.name}}
+{% endfor %}
 
 {% endblock content %}
 

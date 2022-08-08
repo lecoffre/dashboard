@@ -61,22 +61,26 @@ class UserStory(models.Model):
     name = models.CharField(max_length=100, default="US", blank=True, null=True)
     project = models.ForeignKey(
         Project,
+        related_name='us',
         on_delete=models.CASCADE,
         default=Project
     )
     product_back_log = models.ForeignKey(
         ProductBackLog,
+        related_name='us',
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
         default=Project.pbl
     )
     #product_back_log = models.ForeignKey(ProductBackLog, null=True, blank=True, on_delete=models.CASCADE)
     
     def clean(self):
         self.is_cleaned = True
-        if self.project != self.product_back_log.project:
-            raise ValidationError("my error message "+str(self.project)+ " "+str(self.product_back_log.project))
-        super(UserStory, self).clean()
+        if self.product_back_log is not None:
+            if self.project != self.product_back_log.project:
+                raise ValidationError("my error message "+str(self.project)+ " "+str(self.product_back_log.project))
+            super(UserStory, self).clean()
 
     def save(self, *args, **kwargs):
         if not self.is_cleaned:
@@ -84,5 +88,7 @@ class UserStory(models.Model):
         super(UserStory, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.name)+" "+str(self.product_back_log)
-
+        if self.product_back_log is not None:
+            return str(self.name)+" "+str(self.product_back_log)
+        else:
+            return str(self.name)

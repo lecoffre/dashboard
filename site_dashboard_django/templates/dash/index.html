@@ -30,23 +30,37 @@ Accueil
 </div>
 
 <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1">
-  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-4 " >
-    <h1 class="text-1xl pb-2">Événements à venir</h1>
-    
+
+  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-0 " >
+
+    <h1 class="text-1xl p-2 bg-green-100 text-slate-800 rounded-t-lg ">TODO (PBL projets perso en cours)</h1>
     <div class="grid grid-cols-1 divide-y">
-    {% for task in Tasks %}
-    <h2 class="text-sm py-2">{{task.name}}</h2>
+
+    {% for project in Projects %}
+    {% if project.status == "I" %}
+    {% for us in project.pbl.us.all %}
+    <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}})</h2>
+    {% endfor %}
+    {% endif %}
     {% endfor %}
     </div>
+
+
+
+    <h1 class="text-1xl p-2 bg-green-100 text-slate-800	">TODO Aujourd'hui ({{Now}})</h1>
+    <div class="grid grid-cols-1 divide-y">
+    {% for task in Tasks %}
+    <h2 class="text-sm py-2 px-2">{{task.name}}</h2>
+    {% endfor %}
+    </div>
+
+
   </div>
+
   <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-4 " >
-    <h1 class="text-1xl pb-2">Événements à venir</h1>
-    
-    <div class="grid grid-cols-1 divide-y">
-    {% for task in Tasks %}
-    <h2 class="text-sm py-2">{{task.name}}</h2>
-    {% endfor %}
-    </div>
+    <h1 class="text-1xl pb-2">Calendrier</h1>
+    <div class="divider h-8 w-max bg-green-200"></div>
+
   </div>
   
   
