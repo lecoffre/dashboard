@@ -37,6 +37,7 @@ Accueil
     <div class="grid grid-cols-1 divide-y px-2">
 
     {% for project in Projects %}
+    {% cycle '' 'bg-slate-50' as rowcolors silent %}
     {% if project.status == "I" %}
     {% for us in project.pbl.us.all %}
     <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
@@ -48,17 +49,18 @@ Accueil
 
 
     <h1 class="text-1xl p-2 bg-gradient-to-r from-blue-100 to-teal-100">TODO Aujourd'hui ({{Now}})</h1>
-    <div class="grid grid-cols-1 divide-y px-2">
+    <div class="grid grid-cols-1 divide-y px-2 mb-4">
     {% for task in Tasks %}
-    <h2 class="text-sm py-2 px-2">{{task.name}}</h2>
+    {% cycle '' 'bg-slate-50' as rowcolors silent %}
+    <h2 class="text-sm py-2 px-2 {{ rowcolors }}">{{task.name}}</h2>
     {% endfor %}
     </div>
 
 
   </div>
 
-  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-4 " >
-    <h1 class="text-1xl pb-2">Calendrier</h1>
+  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md  " >
+    <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r  from-teal-100 to-teal-200">Calendrier</h1>
     <div class="divider h-8 w-max bg-green-200"></div>
 
   </div>

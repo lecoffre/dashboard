@@ -27,8 +27,23 @@ def index(request):
     return render(request, 'dash/index.html', context)
 
 def projects(request):
+    mssg = "hello"
+    
+    if request.method == 'POST': # If the form has been submitted...
+        form = ProjectForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            cd = form.cleaned_data
+            p = Project(name=cd['name'])
+            p.save()
+            mssg = "valid"
+        else:
+            mssg = "not valid"
+
+            # Process the data in form.cleaned_data
+            # ...
+
     projects = Project.objects.all()
-    context = {'Projects': projects, 'form' : ProjectForm()}
+    context = {'Projects': projects, 'form' : ProjectForm(), "message":mssg}
     return render(request, 'dash/projects.html', context)
 
 def project_detail(request, project_id):
