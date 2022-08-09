@@ -5,10 +5,11 @@ Projets
 {% endblock title %}
 
 {% block content %}
+<div class="rounded-lg bg-slate-50 p-4 h-96">
 
-<h1 class="">Projets</h1>
+<h1 class="text-2xl">{{Project}}</h1>
 <hr class="mb-4 mt-2">
-<div >{{Project}}</div>
+
 {{Project.pbl}} :
 {% for us in Project.pbl.us.all %}
 {{us.name}}
@@ -19,6 +20,7 @@ US {{Project}} :
 {{us.name}}
 {% endfor %}
 
+</div>
 {% endblock content %}
 
 

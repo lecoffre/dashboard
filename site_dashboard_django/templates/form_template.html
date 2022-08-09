@@ -1,0 +1,23 @@
+
+
+<form class="m-2" method="POST" action="{{ action }}">
+    {% csrf_token %}
+   
+       
+            {% for field in form %}
+            <div class="border-0 pb-4">
+                <div>{{ field.errors }}</div>
+                <div class="columns-2">
+                <div class="">{{ field.label_tag }}</div>
+                <div class="">{{ field }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        <hr class="m-2">
+    <button class="submit  px-2 py-2 rounded-lg shadow-lg hover:bg-green-600">{{btn_label}}</button>
+
+</form>
+
+
+
+

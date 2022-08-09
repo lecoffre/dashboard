@@ -33,13 +33,13 @@ Accueil
 
   <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-0 " >
 
-    <h1 class="text-1xl p-2 bg-green-100 rounded-t-lg ">TODO (PBL projets perso en cours)</h1>
-    <div class="grid grid-cols-1 divide-y">
+    <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r from-blue-100 to-teal-100">TODO (PBL projets perso en cours)</h1>
+    <div class="grid grid-cols-1 divide-y px-2">
 
     {% for project in Projects %}
     {% if project.status == "I" %}
     {% for us in project.pbl.us.all %}
-    <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}})</h2>
+    <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
     {% endfor %}
     {% endif %}
     {% endfor %}
@@ -47,8 +47,8 @@ Accueil
 
 
 
-    <h1 class="text-1xl p-2 bg-green-100">TODO Aujourd'hui ({{Now}})</h1>
-    <div class="grid grid-cols-1 divide-y">
+    <h1 class="text-1xl p-2 bg-gradient-to-r from-blue-100 to-teal-100">TODO Aujourd'hui ({{Now}})</h1>
+    <div class="grid grid-cols-1 divide-y px-2">
     {% for task in Tasks %}
     <h2 class="text-sm py-2 px-2">{{task.name}}</h2>
     {% endfor %}

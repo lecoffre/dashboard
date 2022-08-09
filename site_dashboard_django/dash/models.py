@@ -73,7 +73,34 @@ class UserStory(models.Model):
         blank=True,
         default=Project.pbl
     )
-    #product_back_log = models.ForeignKey(ProductBackLog, null=True, blank=True, on_delete=models.CASCADE)
+    theme = models.CharField(max_length=100, blank=True, null=True)
+    as_a = models.CharField(max_length=100, blank=True, null=True)
+    i_want = models.CharField(max_length=100, blank=True, null=True)
+    in_order_to = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+
+    class UsPriority(models.TextChoices):
+        WEAK = 'W', _('Weak')
+        MEDIUM = 'M', _('Medium')
+        STRONG = 'S', _('Strong')
+    priority = models.CharField(
+    max_length=2,
+    choices=UsPriority.choices,
+    default=UsPriority.MEDIUM,
+    )
+
+    class UsStatus(models.TextChoices):
+        NEW = 'N', _('New')
+        INPROGRESS = 'I', _('InProgress')
+        ENDED = 'E', _('Ended')
+        CANCELED = 'C', _('Canceled')
+        SUSPENDED = 'S', _('Suspended')
+    status = models.CharField(
+    max_length=2,
+    choices=UsStatus.choices,
+    default=UsStatus.NEW,
+    )
+
     
     def clean(self):
         self.is_cleaned = True

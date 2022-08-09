@@ -7,6 +7,7 @@ from django.test import SimpleTestCase, override_settings
 from django.shortcuts import render, redirect
 from django.urls import path
 from dash.models import Task, Project
+from dash.form import ProjectForm
 from datetime import datetime
 
 def redirect_view(request):
@@ -27,7 +28,7 @@ def index(request):
 
 def projects(request):
     projects = Project.objects.all()
-    context = {'Projects': projects}
+    context = {'Projects': projects, 'form' : ProjectForm()}
     return render(request, 'dash/projects.html', context)
 
 def project_detail(request, project_id):
