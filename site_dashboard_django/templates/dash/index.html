@@ -37,10 +37,14 @@ Accueil
     <div class="grid grid-cols-1 divide-y px-2">
 
     {% for project in Projects %}
-    {% cycle '' 'bg-slate-50' as rowcolors silent %}
     {% if project.status == "I" %}
-    {% for us in project.pbl.us.all %}
+    {% for us in project.pbl.us.all%}
+    {% if us.status == "I"%} <!--put I condition here-->
+    <h2 class="text-sm py-2 px-2 bg-yellow-50">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
+    {% else %}
     <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
+
+    {% endif %}
     {% endfor %}
     {% endif %}
     {% endfor %}
@@ -71,7 +75,6 @@ Accueil
 </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <!-- Chart line -->
   <script>

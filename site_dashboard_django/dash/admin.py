@@ -5,7 +5,12 @@ from dash.models import Task, Project, ProductBackLog, UserStory
 
 admin.site.register(Project)
 admin.site.register(ProductBackLog)
-admin.site.register(UserStory)
+
+
+@admin.register(UserStory)
+class TaskUserStory(admin.ModelAdmin):
+    list_display = ("name", "i_want","priority")
+    
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):

@@ -43,11 +43,14 @@ def projects(request):
             # ...
 
     projects = Project.objects.all()
-    context = {'Projects': projects, 'form' : ProjectForm(), "message":mssg}
+    context = {'Projects': projects, 'form' : ProjectForm(), "message":mssg, 'type':"normal"}
     return render(request, 'dash/projects.html', context)
 
 def project_detail(request, project_id):
     project = Project.objects.get(pk=project_id)
+    
+    
+
     context = {'Project': project}
     return render(request, 'dash/project_detail.html', context)
 
@@ -82,3 +85,8 @@ class CustomErrorHandlerTests(SimpleTestCase):
         response = self.client.get('/403/')
         # Make assertions on the response here. For example:
         self.assertContains(response, 'Error handler content', status_code=403)
+
+
+
+
+

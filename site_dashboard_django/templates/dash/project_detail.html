@@ -5,22 +5,75 @@ Projets
 {% endblock title %}
 
 {% block content %}
-<div class="rounded-lg bg-slate-50 p-4 h-96">
+<div class="rounded-lg bg-slate-50 p-4 ">
 
-<h1 class="text-2xl">{{Project}}</h1>
+<h1 class="text-2xl">Projet {{Project}}</h1>
 <hr class="mb-4 mt-2">
 
-{{Project.pbl}} :
-{% for us in Project.pbl.us.all %}
-{{us.name}}
-{% endfor %}
-<hr>
-US {{Project}} : 
-{% for us in Project.us.all %}
-{{us.name}}
-{% endfor %}
+
+
+<div class="grid grid-cols-4 gap-4">
+
+<div class="shadow-lg rounded-lg overflow-hidden col-span-3">
+    <h1 class="text-2xl">PBL {{Project}} {{Project.pbl}} :</h1>
+    <hr>
+    {% for us in Project.pbl.us.all %}
+    <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
+    {% endfor %}
+    <h1 class="text-2xl mt-6">US {{Project}} : </h1>
+    <hr>
+    {% for us in Project.us.all %}
+    <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+<div class="shadow-lg rounded-lg overflow-hidden col-span-1 ">
+    <div class="py-3 px-5 bg-gray-50 ">Répartition des taches en cours</div>
+    <canvas class="p-10 w-full" id="chartDoughnut"></canvas>
+  </div>
+
 
 </div>
+
+
+</div>
+
+
+<!-- Chart doughnut -->
+<script>
+    const dataDoughnut = {
+      labels: ["US en cours (PBL)", "Autres"],
+      datasets: [
+        {
+          label: "My First Dataset",
+          data: [{{Project.us.count|safe}},{{Project.us.count|safe}}],
+          backgroundColor: [
+            "rgb(133, 105, 241)",
+            "rgb(164, 101, 241)",
+            "rgb(101, 143, 241)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    };
+  
+    const configDoughnut = {
+      type: "doughnut",
+      data: dataDoughnut,
+      options: {},
+    };
+  
+    var chartBar = new Chart(
+      document.getElementById("chartDoughnut"),
+      configDoughnut
+    );
+  </script>
+
 {% endblock content %}
 
 
