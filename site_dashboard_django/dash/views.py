@@ -50,8 +50,11 @@ def project_detail(request, project_id):
     project = Project.objects.get(pk=project_id)
     
     
-
-    context = {'Project': project}
+    us_total_number = project.us.count()
+    pbl_number = project.pbl.us.count()
+    data1 = pbl_number
+    data2 = us_total_number - pbl_number
+    context = {'Project': project, 'data1':data1, 'data2':data2}
     return render(request, 'dash/project_detail.html', context)
 
 def about(request):

@@ -7,7 +7,12 @@ Projets
 {% block content %}
 <div class="rounded-lg bg-slate-50 p-4 ">
 
+<div class="relative">
 <h1 class="text-2xl">Projet {{Project}}</h1>
+<a href="#" class="absolute right-0 top-0 fa fa-edit"></a>
+</div>
+
+
 <hr class="mb-4 mt-2">
 
 
@@ -47,11 +52,11 @@ Projets
 <!-- Chart doughnut -->
 <script>
     const dataDoughnut = {
-      labels: ["US en cours (PBL)", "Autres"],
+      labels: ["US en cours (PBL)", "En attente"],
       datasets: [
         {
           label: "My First Dataset",
-          data: [{{Project.us.count|safe}},{{Project.us.count|safe}}],
+          data: [{{data1|safe}},{{data2|safe}}],
           backgroundColor: [
             "rgb(133, 105, 241)",
             "rgb(164, 101, 241)",

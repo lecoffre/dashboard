@@ -10,8 +10,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		{% tailwind_css %}
+		<link rel="stylesheet" href="{% static 'fontawesome-free-6.1.2-web/css/all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'calendar/main.css' %}">
+		<script src="{% static 'calendar/main.js' %}"></script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+		<style>
+			/* width */
+			::-webkit-scrollbar {
+			  width: 7px;
+			}
+			
+			/* Track */
+			::-webkit-scrollbar-track {
+			  border-radius: 7px;
+			}
+			 
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+			background: rgb(122,181,182);
+			background: linear-gradient(90deg, rgba(122,181,182,1) 0%, rgba(0,255,179,1) 100%);
+			border-radius: 7px;
+			}
+			
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+			  background: #ffffff; 
+			}
+			</style>
 	</head>
 
 	<body class="bg-gradient-to-r from-blue-400 to-teal-400 font-normal">

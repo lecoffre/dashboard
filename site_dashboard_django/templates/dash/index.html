@@ -14,7 +14,6 @@ Accueil
 
 
 
-
 <!--
 {% for task in Tasks %}
 {{task.name|lower}}
@@ -35,10 +34,12 @@ Accueil
 
     <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r from-blue-100 to-teal-100">TODO (PBL projets perso en cours)</h1>
     <div class="grid grid-cols-1 divide-y px-2">
-
+    <div class="relative">
+      
     {% for project in Projects %}
     {% if project.status == "I" %}
     {% for us in project.pbl.us.all%}
+    <a href="{% url 'project_detail' project_id=us.project.id %}" class="absolute right-0 p-2 text-slate-300 fa fa-eye"></a>
     {% if us.status == "I"%} <!--put I condition here-->
     <h2 class="text-sm py-2 px-2 bg-yellow-50">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
     {% else %}
@@ -49,7 +50,7 @@ Accueil
     {% endif %}
     {% endfor %}
     </div>
-
+    </div>
 
 
     <h1 class="text-1xl p-2 bg-gradient-to-r from-blue-100 to-teal-100">TODO Aujourd'hui ({{Now}})</h1>
@@ -64,13 +65,13 @@ Accueil
   </div>
 
   <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md  " >
-    <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r  from-teal-100 to-teal-200">Calendrier</h1>
-    <div class="divider h-8 w-max bg-green-200"></div>
-
+    {% include 'calendar.html'%}
   </div>
-  
-  
-    
+
+
+
+
+
   </div>
 </div>
 
