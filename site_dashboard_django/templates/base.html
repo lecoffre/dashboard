@@ -42,27 +42,18 @@
 
 	<body class="bg-gradient-to-r from-blue-400 to-teal-400 font-normal">
 
-{% include 'navbar.html'%}
-{% if message and type %}
+		<div class="grid grid-cols-1 gap-0 col-span-1 ">
+		{% include 'navbar.html'%}
+		{% if message and type %}
 		{% include 'alert.html'%}
 		{% endif %}
+		
 
+		
 <div class="grid grid-cols-10 gap-0">
 	
-	<div class=" bg-slate-900 rounded-br-lg  bg-slate-600 lg:col-span-1 md:col-span-0 sm:col-span-0 col-span-0">
-		<div class="grid grid-cols-1 gap-0 lg:mb-6">
-			<div class="w-0 h-0 lg:h-20 lg:w-20 bg-slate-100 mx-auto lg:mt-6 rounded-lg"></div>
-			<div class="w-0 h-0 lg:h-20 lg:w-20 bg-slate-100 mx-auto lg:mt-6 rounded-lg"></div>
-			<div class="w-0 h-0 lg:h-20 lg:w-20 bg-slate-100 mx-auto lg:mt-6 rounded-lg"></div>
-			<div class="w-0 h-0 lg:h-20 lg:w-20 bg-slate-100 mx-auto lg:mt-6 rounded-lg"></div>
-			<div class="w-0 h-0 lg:h-20 lg:w-20 bg-slate-100 mx-auto lg:mt-6 rounded-lg"></div>
-
-
-
-
-		</div>
-
-
+	<div class=" rounded-br-lg shadow-lg bg-slate-600 lg:col-span-1 col-span-0">
+		{% include 'sidebar.html'%}
 	</div>
 
 
@@ -74,7 +65,7 @@
 
 		
 
-	<div class=" mt-0 mb-4 mx-1.5 px-2 py-2 rounded-b-lg  shadow-2xl ">	
+	<div class=" mt-0 mb-0 mx-1.5 px-2 py-2 rounded-b-lg  shadow-2xl ">	
       {% block content %}
          Body content
       {% endblock %}
@@ -84,7 +75,7 @@
 
 
 
-
+</div>
 
 
 

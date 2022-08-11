@@ -8,7 +8,7 @@ Projets
 <div class="rounded-lg bg-slate-50 p-4 ">
 
 <div class="relative">
-<h1 class="text-2xl">Projet {{Project}}</h1>
+<h1 class="text-2xl">US {{US}}</h1>
 <a href="#" class="absolute right-0 top-0 fa fa-edit"></a>
 </div>
 
@@ -20,22 +20,7 @@ Projets
 <div class="grid grid-cols-4 gap-4">
 
 <div class="p-4 shadow-lg rounded-lg overflow-hidden lg:col-span-3 col-span-4">
-    <h1 class="text-xl">PBL de {{Project}} ({{Project.pbl}}) :</h1>
-    <hr class="mb-4">
-    {% for us in Project.pbl.us.all %}
-    <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
-    <a href="{% url 'us_detail' us_id=us.id %}" class="fa fa-eye mr-4 mt-1 text-slate-400"></a>
-    <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
-    </div>
-    {% endfor %}
-    <h1 class="text-xl mt-6">US de {{Project}} : </h1>
-    <hr class="mb-4">
-    {% for us in Project.us.all %}
-    <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
-    <a href="{% url 'us_detail' us_id=us.id %}" class="fa fa-eye mr-4 mt-1 text-slate-400"></a>
-    <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
-    </div>
-    {% endfor %}
+hola
 </div>
 
 
@@ -44,8 +29,7 @@ Projets
 
 
 <div class="shadow-lg rounded-lg overflow-hidden lg:col-span-1 col-span-4">
-    <div class="py-3 px-5 bg-gray-50 ">Répartition des taches en cours</div>
-    <canvas class="p-10 w-full" id="chartDoughnut"></canvas>
+hola
   </div>
 
 

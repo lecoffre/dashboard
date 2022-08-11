@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Projets
 {% endblock title %}
@@ -45,7 +45,14 @@ Projets
 </div>
 {% endfor %}
 </div>
+<div class="full bg-white rounded-lg shadow-lg px-20" >
+<img src="{% static 'img/project.jpg' %}">
 </div>
+
+
+</div>
+
+
 
 
 
@@ -55,6 +62,8 @@ Projets
     <hr class="m-2">
     {% include 'form_template.html' with action='/dashboard/projects/' btn_label='Ajouter' %}
     </div>
+
+  </div>
 
 </div>
 

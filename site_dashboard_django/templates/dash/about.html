@@ -9,12 +9,21 @@ Projets
 <h1 class="text-2xl pb-4">A propos</h1>
 <hr>
 
-    <div class="py-4"></div>
-    <img src="{% static '/img/tailwind_logo.png' %}" class="object-contain w-32 pb-4" >
-    <img src="{% static '/img/django_logo.png' %}" class="object-contain w-32 pb-4 " >
-    <img src="{% static '/img/chartjs_logo.png' %}" class="object-contain w-8 pb-4 " >
+<div class="grid grid-cols-10 gap-4">
 
+<div class="col-span-5 grid grid-cols-9 gap-8 items-center shadow-lg bg-white rounded-lg">
+    <div class="col-span-3 "><img src="{% static '/img/tailwind_logo.png' %}" class="object-contain " ></div>
+    <div class="col-span-3 "><img src="{% static '/img/django_logo.png' %}" class="object-contain" ></div> 
+    <div class="col-span-3 "><img src="{% static '/img/chartjs_logo.png' %}" class="object-contain " ></div> 
 </div>
+
+<div class="col-span-5 shadow-lg bg-white rounded-lg">
+    All credit to Kamil B.
+</div>
+
+</div>    
+    
+    </div>
 {% endblock content %}
 
 

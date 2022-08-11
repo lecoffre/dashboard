@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.test import SimpleTestCase, override_settings
 from django.shortcuts import render, redirect
 from django.urls import path
-from dash.models import Task, Project
+from dash.models import Task, Project, UserStory
 from dash.form import ProjectForm
 from datetime import datetime
 
@@ -56,6 +56,11 @@ def project_detail(request, project_id):
     data2 = us_total_number - pbl_number
     context = {'Project': project, 'data1':data1, 'data2':data2}
     return render(request, 'dash/project_detail.html', context)
+
+def us_detail(request, us_id):
+    us = UserStory.objects.get(pk=us_id)
+    context = {'US': us,}
+    return render(request, 'dash/us_detail.html', context)
 
 def about(request):
     context = {}
