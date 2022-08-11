@@ -786,6 +786,18 @@ select {
   top: 0px;
 }
 
+.right-10 {
+  right: 2.5rem;
+}
+
+.right-20 {
+  right: 5rem;
+}
+
+.bottom-5 {
+  bottom: 1.25rem;
+}
+
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -883,6 +895,10 @@ select {
   margin-top: 0.25rem;
 }
 
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -929,6 +945,10 @@ select {
 
 .h-4 {
   height: 1rem;
+}
+
+.h-2 {
+  height: 0.5rem;
 }
 
 .w-full {
@@ -1020,6 +1040,18 @@ select {
   gap: 0.5rem;
 }
 
+.gap-20 {
+  gap: 5rem;
+}
+
+.gap-24 {
+  gap: 6rem;
+}
+
+.gap-16 {
+  gap: 4rem;
+}
+
 .space-x-7 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.75rem * var(--tw-space-x-reverse));
@@ -1068,6 +1100,16 @@ select {
 .rounded-t-lg {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+}
+
+.rounded-l-lg {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.rounded-r-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .rounded-br-lg {
@@ -1251,6 +1293,11 @@ select {
   padding-right: 1.25rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .pt-40 {
   padding-top: 10rem;
 }
@@ -1259,20 +1306,24 @@ select {
   padding-bottom: 1rem;
 }
 
-.pl-8 {
-  padding-left: 2rem;
+.pl-20 {
+  padding-left: 5rem;
 }
 
 .pl-4 {
   padding-left: 1rem;
 }
 
-.pl-20 {
-  padding-left: 5rem;
+.pl-6 {
+  padding-left: 1.5rem;
 }
 
 .text-center {
   text-align: center;
+}
+
+.align-top {
+  vertical-align: top;
 }
 
 .font-serif {

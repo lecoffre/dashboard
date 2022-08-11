@@ -29,8 +29,20 @@ Projets
     <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
     </div>
     {% endfor %}
+    <div class="relative">
     <h1 class="text-xl mt-6">US de {{Project}} : </h1>
+    <button id="add-us" class="absolute right-0 top-0 text-slate-400 text-sm flex "><span class="fa fa-plus"></span></button>
+    </div>
+
     <hr class="mb-4">
+    <div class="bg-white rounded-lg px-2 py-2 mb-2 shadow-md flex">
+
+      FORMULAIRE TOGGLE DE CREATION DES US !!!!!!!!!!!!
+      <br><br><br>
+    </div>
+
+
+
     {% for us in Project.us.all %}
     <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
     <a href="{% url 'us_detail' us_id=us.id %}" class="fa fa-eye mr-4 mt-1 text-slate-400"></a>
@@ -44,9 +56,14 @@ Projets
 
 
 
-<div class="shadow-lg rounded-lg overflow-hidden lg:col-span-1 col-span-4">
+<div class="lg:col-span-1 col-span-4">
+  <div class="shadow-lg rounded-lg overflow-hidden mb-6">
+    <div class="py-3 px-5 bg-gray-50 "> Début : {{Project.start_date}}</div>
+  </div>
+    <div class="shadow-lg rounded-lg overflow-hidden ">
     <div class="py-3 px-5 bg-gray-50 ">Répartition des taches en cours</div>
     <canvas class="p-10 w-full" id="chartDoughnut"></canvas>
+    <div>
   </div>
 
 
