@@ -16,6 +16,7 @@ class Task(models.Model):
 #---------------------------------------------------------------- Projects
 
 class Project(models.Model):
+
     name = models.CharField(max_length=30, blank=False, null=False)
     start_date = models.DateTimeField(default=datetime.now, blank=False)
     end_date = models.DateTimeField(blank=True, null=True)
@@ -57,13 +58,15 @@ class ProductBackLog(models.Model):
 
 
 class UserStory(models.Model):
-
+    
     name = models.CharField(max_length=100, default="US", blank=True, null=True)
     project = models.ForeignKey(
         Project,
         related_name='us',
         on_delete=models.CASCADE,
-        default=Project
+        null=True,
+        blank=True,
+        default=Project,
     )
     product_back_log = models.ForeignKey(
         ProductBackLog,
@@ -101,7 +104,7 @@ class UserStory(models.Model):
     default=UsStatus.NEW,
     )
 
-    
+"""
     def clean(self):
         self.is_cleaned = True
         if self.product_back_log is not None:
@@ -119,3 +122,4 @@ class UserStory(models.Model):
             return str(self.name)+" "+str(self.product_back_log)
         else:
             return str(self.name)
+"""

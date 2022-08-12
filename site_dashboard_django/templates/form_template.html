@@ -1,11 +1,14 @@
 
 
+{% if displayform %}
+{% if displayform == 'horizontal' %}
 <form class="m-2" method="POST" action="{{ action }}">
+
     {% csrf_token %}
    
-       
+    <div class="grid grid-cols-9 gap-4">
             {% for field in form %}
-            <div class="border-0 pb-4">
+            <div class="border-0 pb-4 col-span-3">
                 <div>{{ field.errors }}</div>
                 <div class="columns-2">
                 <div class="">{{ field.label_tag }}</div>
@@ -13,11 +16,37 @@
                 </div>
             </div>
         {% endfor %}
+        
+        </div>
+
         <hr class="m-2">
-    <button class="submit  px-2 py-2 rounded-lg shadow-lg hover:bg-green-600">{{btn_label}}</button>
+    <button name="{{name_action}}" class="submit  px-2 py-2 rounded-lg text-green-400 border-2 border-green-400  hover:border-white hover:text-white hover:bg-green-400">{{btn_label}}</button>
+
+</form>
+{% endif %}
+
+{% else %}
+<form class="m-2" method="POST" action="{{ action }}">
+
+    {% csrf_token %}
+   
+    <div class="grid grid-cols-1 gap-4">
+            {% for field in form %}
+            <div class="border-0 pb-4 col-span-1">
+                <div>{{ field.errors }}</div>
+                <div class="columns-2">
+                <div class="">{{ field.label_tag }}</div>
+                <div class="">{{ field }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+        <hr class="m-2">
+    <button name="{{name_action}}" class="submit  px-2 py-2 rounded-lg text-green-400 border-2 border-green-400  hover:border-white hover:text-white hover:bg-green-400">{{btn_label}}</button>
 
 </form>
 
-
+{% endif %}
 
 

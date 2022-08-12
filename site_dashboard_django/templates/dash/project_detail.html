@@ -8,9 +8,11 @@ Projets
 <div class="rounded-lg bg-slate-50 p-4 ">
 
 <div class="relative flex">
-<h1 class="text-2xl">Projet {{Project}}</h1>
-<h1 class="pl-20 text-xl">Burn Down chart</h1>
-<a href="#" class="absolute right-0 top-0 fa fa-edit"></a>
+<h1 class="text-2xl px-4 rounded-t-lg text-xl bg-slate-200">Projet {{Project}}</h1>
+<h1 class="ml-4 px-4 rounded-t-lg text-xl bg-slate-200 text-slate-300">Burn Down chart</h1>
+<div class="absolute right-0">
+  <a href="" class="fa fa-edit text-slate-500 mr-2"></a> <a href="" class="fa fa-trash text-rose-500 mr-2"></a>
+  </div>
 </div>
 
 
@@ -21,7 +23,12 @@ Projets
 <div class="grid grid-cols-4 gap-4">
 
 <div class="p-4 shadow-lg rounded-lg overflow-hidden lg:col-span-3 col-span-4">
+    {% if Projeject.pbl %}
     <h1 class="text-xl">PBL de {{Project}} ({{Project.pbl}}) :</h1>
+    {% else %}
+    <div class="relative"><h1 class="text-xl">Pas de Product Back Log</h1><button id="add-bl" class="absolute right-0 top-0 text-slate-400 text-sm flex "><span class="fa fa-plus"></span></button></div>
+    {% endif %}
+    
     <hr class="mb-4">
     {% for us in Project.pbl.us.all %}
     <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
@@ -33,20 +40,22 @@ Projets
     <h1 class="text-xl mt-6">US de {{Project}} : </h1>
     <button id="add-us" class="absolute right-0 top-0 text-slate-400 text-sm flex "><span class="fa fa-plus"></span></button>
     </div>
-
+    
     <hr class="mb-4">
     <div class="bg-white rounded-lg px-2 py-2 mb-2 shadow-md flex">
-
-      FORMULAIRE TOGGLE DE CREATION DES US !!!!!!!!!!!!
+      {% include 'form_template.html' with action="/dashboard/projects/1/" btn_label='Ajouter us' name_action='add_us' form=forms.add_us displayform='horizontal' %}
       <br><br><br>
     </div>
 
 
 
     {% for us in Project.us.all %}
-    <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
+    <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex relative">
     <a href="{% url 'us_detail' us_id=us.id %}" class="fa fa-eye mr-4 mt-1 text-slate-400"></a>
     <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
+      <div class="absolute right-0 mr-4">
+      <a href="" class="fa fa-edit text-slate-500 mr-2"></a> <a href="" class="fa fa-trash text-rose-500 mr-2"></a>
+    </div>
     </div>
     {% endfor %}
 </div>

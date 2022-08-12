@@ -21,8 +21,9 @@ Accueil
 -->
 <div class="grid md:grid-cols-1 gap-1 sm:grid-cols-1">
 <div>
-  <div class="  w-full  rounded-lg border-slate-100 bg-white shadow-md p-4" >
+  <div class="  w-full  rounded-lg border-slate-100 bg-white shadow-md p-4 relative" >
     <canvas style="position:relative; height:200px; width:100%" id="chartLine"></canvas>
+    <div class="absolute right-0 top-0 rounded-lg bg-white shadow-lg  "><a class="" href="">Toutes les stats <span class="fa fa-angle-right"></span></a></div>
   </div>
 </div>
 <div>
@@ -35,7 +36,7 @@ Accueil
     <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r from-blue-100 to-teal-100">TODO (PBL projets perso en cours)</h1>
     <div class="grid grid-cols-1 divide-y px-2">
     <div class="relative">
-      
+    
     {% for project in Projects %}
     {% if project.status == "I" %}
     {% for us in project.pbl.us.all%}
@@ -43,7 +44,7 @@ Accueil
     {% if us.status == "I"%} <!--put I condition here-->
     <h2 class="text-sm py-2 px-2 bg-yellow-50">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
     {% else %}
-    <h2 class="text-sm py-2 px-2">{{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
+    <h2 class="text-sm py-2 px-2">{{us.id}} {{us.name}} ({{us.project}}) : {{us.i_want}}</h2>
 
     {% endif %}
     {% endfor %}

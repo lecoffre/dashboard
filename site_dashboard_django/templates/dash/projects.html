@@ -7,7 +7,7 @@ Projets
 {% block content %}
 
 
-<div class="rounded-lg bg-slate-50 p-4 min-h-96 grid grid-cols-3 gap-8 ">
+<div class="rounded-lg bg-slate-50 p-4 min-h-96 grid grid-cols-3 gap-2 ">
 
 <div class=" col-span-3">
     <ul class="flex justify-between ">
@@ -15,10 +15,10 @@ Projets
           <h1 class="inline-block text-2xl" href="#">Projets</h1>
         </li>
         <li class="mr-3">
-          <button class="hide-show inline-block py-2 px-4 text-green-400 cursor-not-allowed border-2 border-green-400 rounded-lg hover:border-white hover:text-white hover:bg-green-400" >Ajouter</button>
+          <button class="hide-show inline-block py-2 px-4 text-green-400 border-2 border-green-400 rounded-lg hover:border-white hover:text-white hover:bg-green-400" >Ajouter</button>
         </li>
       </ul>
-      <hr class="mb-4 mt-2">
+      <hr class=" mt-2">
     </div>
 
 
@@ -27,20 +27,26 @@ Projets
     
 <div >
 {% for project in Projects %}
-<div class="shadow-md rounded-lg px-4 py-2 bg-white grid  grid-cols-2 grid-rows-0 mb-4">
+<div class="shadow-md rounded-lg px-4 py-2 bg-white grid  grid-cols-3 grid-rows-0 mb-4">
+
 <a href="{% url 'project_detail' project_id=project.id %}"><h2 class="">{{project.name}}</h2></a>
 {% if project.status == "I" %}
-<div class=" grid grid-cols-3 "> <h2>En cours</h2><div class="rounded-full bg-green-400  w-4 h-4 my-auto"></div> </div>
+<div class=" grid grid-cols-2 "> <h2>En cours</h2><div class="rounded-full bg-green-400  w-4 h-4 my-auto"></div></div>
 {% elif project.status == "N" %}
-<div class=" grid grid-cols-3 "> <h2>Nouveau</h2><div class="rounded-full bg-blue-400  w-4 h-4 my-auto"></div></div>
+<div class=" grid grid-cols-2 "> <h2>Nouveau</h2><div class="rounded-full bg-blue-400  w-4 h-4 my-auto"></div></div>
 {% elif project.status == "E" %}
-<div class=" grid grid-cols-3 "> <h2>Terminé</h2><div class="rounded-full bg-orange-400  w-4 h-4 my-auto"></div></div>
+<div class=" grid grid-cols-2 "> <h2>Terminé</h2><div class="rounded-full bg-orange-400  w-4 h-4 my-auto"></div></div>
 {% elif project.status == "C" %}
-<div class=" grid grid-cols-3 "> <h2>Annulé</h2><div class="rounded-full bg-red-400  w-4 h-4 my-auto"></div></div>
+<div class=" grid grid-cols-2 "> <h2>Annulé</h2><div class="rounded-full bg-red-400  w-4 h-4 my-auto"></div></div>
 {% elif project.status == "S" %}
-<div class=" grid grid-cols-3 "> <h2>Suspendu</h2><div class="rounded-full bg-yellow-400  w-4 h-4 my-auto"></div></div>
+<div class=" grid grid-cols-2 "> <h2>Suspendu</h2><div class="rounded-full bg-yellow-400  w-4 h-4 my-auto"></div></div>
 {% endif %}
 
+<div class="relative"> 
+  <div class="absolute right-0">
+  <a href="" class="fa fa-edit text-slate-500 mr-2"></a> <a href="" class="fa fa-trash text-rose-500 mr-2"></a>
+  </div>
+</div>
 
 </div>
 {% endfor %}
@@ -60,8 +66,12 @@ Projets
 <div class="hide-show-item w-full shadow-md bg-white rounded-lg p-4 lg:col-span-1 sm:col-span-3 col-span-3">
     <h2 class="text-lg">Ajouter un projet</h2>
     <hr class="m-2">
-    {% include 'form_template.html' with action='/dashboard/projects/' btn_label='Ajouter' %}
-    </div>
+    {% include 'form_template.html' with action='/dashboard/projects/' btn_label='Ajouter' name_action='add_project' form=forms.add_project  %}
+  </div>
+
+
+
+
 
   </div>
 
