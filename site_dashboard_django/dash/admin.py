@@ -14,7 +14,7 @@ class TaskUserStory(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("name", "number")
+    list_display = ("name", "end_date")
 """
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):

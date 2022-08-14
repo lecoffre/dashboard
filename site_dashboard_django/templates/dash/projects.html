@@ -53,12 +53,9 @@ Projets
 </div>
 <div class="full bg-white rounded-lg shadow-lg px-20" >
 <img src="{% static 'img/project.jpg' %}">
-</div>
-
 
 </div>
-
-
+</div>
 
 
 
@@ -68,13 +65,7 @@ Projets
     <hr class="m-2">
     {% include 'form_template.html' with action='/dashboard/projects/' btn_label='Ajouter' name_action='add_project' form=forms.add_project  %}
   </div>
-
-
-
-
-
   </div>
-
 </div>
 
 <script>
@@ -96,8 +87,6 @@ Projets
         }else{
             projects.classList.replace("lg:col-span-3", "lg:col-span-2");
          }
-        
-        
         
     });
 </script>

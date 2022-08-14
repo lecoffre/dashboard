@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Projets
 {% endblock title %}
@@ -16,7 +16,7 @@ Projets
 </div>
 
 
-<hr class="mb-4 mt-2">
+<hr class="mb-4">
 
 
 
@@ -43,7 +43,7 @@ Projets
     
     <hr class="mb-4">
     <div class="bg-white rounded-lg px-2 py-2 mb-2 shadow-md flex">
-      {% include 'form_template.html' with action="/dashboard/projects/1/" btn_label='Ajouter us' name_action='add_us' form=forms.add_us displayform='horizontal' %}
+      {% include 'form_template.html' with action="/dashboard/projects/"|add:Project btn_label='Ajouter us' name_action='add_us' form=forms.add_us displayform='horizontal' %}
       <br><br><br>
     </div>
 
@@ -70,8 +70,14 @@ Projets
     <div class="py-3 px-5 bg-gray-50 "> Début : {{Project.start_date}}</div>
   </div>
     <div class="shadow-lg rounded-lg overflow-hidden ">
+    {% if Project.us.all %}
     <div class="py-3 px-5 bg-gray-50 ">Répartition des taches en cours</div>
     <canvas class="p-10 w-full" id="chartDoughnut"></canvas>
+    {% else %}
+    <h1 class="p-4">Crée ta prémière User Story !</h1>
+    <img src="{% static 'img/us.jpg' %}">
+    {% endif %}
+
     <div>
   </div>
 

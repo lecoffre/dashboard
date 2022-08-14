@@ -23,7 +23,7 @@ Accueil
 <div>
   <div class="  w-full  rounded-lg border-slate-100 bg-white shadow-md p-4 relative" >
     <canvas style="position:relative; height:200px; width:100%" id="chartLine"></canvas>
-    <div class="absolute right-0 top-0 rounded-lg bg-white shadow-lg  "><a class="" href="">Toutes les stats <span class="fa fa-angle-right"></span></a></div>
+    <a class="" href=""><div class="absolute right-0 top-0  bg-white shadow-md p-2 rounded-lg ">Toutes les stats <span class="fa fa-angle-right"></span></div></a>
   </div>
 </div>
 <div>
@@ -65,7 +65,7 @@ Accueil
 
   </div>
 
-  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md  " >
+  <div class=" h-96 rounded-lg border-slate-100 bg-white shadow-md  " >
     {% include 'calendar.html'%}
   </div>
 
@@ -86,18 +86,58 @@ Accueil
       labels: labels,
       datasets: [
         {
-          label: "Évolution de ta productivité",
+          label: "Évolution de ta productivité (tâches)",
           backgroundColor: "hsl(142, 69%, 58%)",
           borderColor: "hsl(142, 69%, 58%)",
           data: {{data2|safe}},
         },
+        {
+          label: "Évolution de ta productivité (projets)",
+          backgroundColor: "hsl(312, 100%, 50%)",
+          borderColor: "hsl(312, 100%, 50%)",
+          data: [0,1,5,2,0,4,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,1,5,0,0,4,0,2,0,0,1],
+        },
+
       ],
     };
   
     const configLineChart = {
       type: "line",
       data,
-      options: {},
+      options: {
+        responsive: true,
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false
+      },
+    },
+    hover: {
+      mode: 'index',
+      intersec: false
+    },
+
+    scales: {
+      x: {
+        title: {
+          display: false,
+          text: 'Month'
+        }
+      },
+      y: {
+        title: {
+          display: false,
+          text: 'Value'
+        },
+        
+        ticks: {
+          // forces step size to be 50 units
+          stepSize: 1
+        }
+      }
+    }
+      },
+      
     };
   
     var chartLine = new Chart(
