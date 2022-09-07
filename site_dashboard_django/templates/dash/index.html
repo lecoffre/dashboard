@@ -31,9 +31,10 @@ Accueil
 
 <div class="grid md:grid-cols-2 gap-2 sm:grid-cols-1">
 
-  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-0 " >
+  <div class="  w-full rounded-lg border-slate-100 bg-white shadow-md p-0 relative" >
 
-    <h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r from-blue-100 to-teal-100">TODO (PBL projets perso en cours)</h1>
+<h1 class="text-1xl p-2  rounded-t-lg bg-gradient-to-r from-blue-100 to-teal-100">TODO (PBL projets perso en cours)</h1>
+
     <div class="grid grid-cols-1 divide-y px-2">
     <div class="relative">
     
@@ -53,12 +54,26 @@ Accueil
     </div>
     </div>
 
-
+    <div class="relative">
     <h1 class="text-1xl p-2 bg-gradient-to-r from-blue-100 to-teal-100">TODO Aujourd'hui ({{Now}})</h1>
-    <div class="grid grid-cols-1 divide-y px-2 mb-4">
+    <button class="absolute right-0 top-0 mt-3 fa fa-add text-slate-400 mr-2" type="button" onclick="toggle1('toggle-tasks')"></button>
+
+    </div>
+
+
+
+    <div  class="grid grid-cols-1 divide-y px-2 mb-4 ">
+      <div id='toggle-tasks' class=" my-2 rounded-lg shadow-lg hidden">
+        {% include 'form_template.html' with action='/dashboard/' btn_label='Ajouter une tâche' name_action='add_task' form=forms.add_task %}
+      </div>
+      
     {% for task in Tasks %}
     {% cycle '' 'bg-slate-50' as rowcolors silent %}
-    <h2 class="text-sm py-2 px-2 {{ rowcolors }}">{{task.name}}</h2>
+    <div class="relative flex p-2">
+    <input class="mt-2 form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-green-400 checked:border-green-400 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer" type="checkbox" value="" id="flexCheckDefault3">
+    <h2 class="text-sm py-1 px-4 {{ rowcolors }}">{{task.name}}</h2>
+  
+  </div>
     {% endfor %}
     </div>
 
@@ -70,15 +85,24 @@ Accueil
   </div>
 
 
-
-
-
   </div>
 </div>
 
 
-  
-  <!-- Chart line -->
+<script type="text/javascript">
+  function toggle1(modalID){
+    document.getElementById(modalID).classList.toggle("hidden");
+    document.getElementById(modalID).classList.toggle("block");
+  }
+</script>
+
+
+
+
+
+
+
+
   <script>
 
     const labels = {{data1|safe}};
@@ -90,12 +114,14 @@ Accueil
           backgroundColor: "hsl(142, 69%, 58%)",
           borderColor: "hsl(142, 69%, 58%)",
           data: {{data2|safe}},
+          tension: 0.3
         },
         {
           label: "Évolution de ta productivité (projets)",
           backgroundColor: "hsl(312, 100%, 50%)",
           borderColor: "hsl(312, 100%, 50%)",
-          data: [0,1,5,2,0,4,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,1,5,0,0,4,0,2,0,0,1],
+          data: [0,1,5,2,0,4,0,2,0,0,0,0,0,1,0,0,0,0,0,0,0,1,5,0,0,4,1,2,0,1],
+          tension: 0.3
         },
 
       ],

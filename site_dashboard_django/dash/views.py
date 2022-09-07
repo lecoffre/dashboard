@@ -8,13 +8,15 @@ from django.test import SimpleTestCase, override_settings
 from django.shortcuts import render, redirect
 from django.urls import path
 from dash.models import Task, Project, UserStory
-from dash.form import ProjectForm, UsForm
+from dash.form import ProjectForm, UsForm, TaskForm
 import datetime
 import calendar
+
 
 class Form:
     add_project = ProjectForm()
     add_us = UsForm()
+    add_task = TaskForm()
 
 class ChartLineData():
     data1 = []
@@ -40,6 +42,17 @@ def redirect_view(request):
 
 def index(request):
     #latest_question_list = Task.objects.order_by('-pub_date')[:5]
+    if request.method == 'POST': # If the form has been submitted...
+        if 'add_task' in request.POST:
+            form = ProjectForm(request.POST) # A form bound to the POST data
+            if form.is_valid(): # All validation rules pass
+                cd = form.cleaned_data
+                p = Task(name=cd['name'], when_begin=datetime.datetime.now()) # TO DO : FINISH THIS PART 
+                p.save()
+                mssg = "valid"
+            else:
+                mssg = "not valid"
+                
     mssg = "un message"
     try:
         projects = Project.objects.all()
@@ -54,7 +67,7 @@ def index(request):
         projects = None
 
     
-    context = {'Projects': projects, 'message':mssg,
+    context = {'Projects': projects, 'forms':Form,
     'type':'info','Tasks': tasks, 'data1':ChartLineData().data1,
     'data2':ChartLineData().data2, 'Now' : datetime.datetime.now().date().isoformat()}
     return render(request, 'dash/index.html', context)
@@ -62,17 +75,25 @@ def index(request):
 def projects(request):
     mssg = "un message"
     
-    if request.method == 'POST': # If the form has been submitted...
+    if request.method == 'POST': # If the form has been submitted...  
+        if 'delete_project' in request.POST:
+            id_project_delete = request.POST.get("project_id", "")
+            project = Project.objects.get(pk=(id_project_delete))
+            project.delete()
+            return redirect('projects')
+
         if 'add_project' in request.POST:
             form = ProjectForm(request.POST) # A form bound to the POST data
             if form.is_valid(): # All validation rules pass
                 cd = form.cleaned_data
                 p = Project(name=cd['name'], status=cd['status'][0])
                 p.save()
+                
                 mssg = "valid"
             else:
                 mssg = "not valid"
 
+            return redirect('projects')
             # Process the data in form.cleaned_data
             # ...
 
@@ -117,6 +138,9 @@ def project_detail(request, project_id):
     data2 = us_total_number - pbl_number
     context = {'Project': project, 'message':mssg, 'data1':data1, 'data2':data2, 'forms':Form}
     return render(request, 'dash/project_detail.html', context)
+
+
+
 
 def us_detail(request, us_id):
     mssg = "dezd"

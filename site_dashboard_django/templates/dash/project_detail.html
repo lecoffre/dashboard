@@ -5,6 +5,8 @@ Projets
 {% endblock title %}
 
 {% block content %}
+
+
 <div class="rounded-lg bg-slate-50 p-4 ">
 
 <div class="relative flex">
@@ -22,13 +24,26 @@ Projets
 
 <div class="grid grid-cols-4 gap-4">
 
-<div class="p-4 shadow-lg rounded-lg overflow-hidden lg:col-span-3 col-span-4">
-    {% if Projeject.pbl %}
+<div class="p-4 shadow-lg rounded-lg overflow-hidden lg:col-span-3 col-span-4 relative">
+  
+    {% if Project.pbl %}
     <h1 class="text-xl">PBL de {{Project}} ({{Project.pbl}}) :</h1>
     {% else %}
-    <div class="relative"><h1 class="text-xl">Pas de Product Back Log</h1><button id="add-bl" class="absolute right-0 top-0 text-slate-400 text-sm flex "><span class="fa fa-plus"></span></button></div>
+    <div class="relative"><h1 class="text-xl">Pas de Product Back Log</h1></div>
     {% endif %}
     
+    {% if Project.pbl.US %}
+    {% else %}
+    <div class="border-dashed border-2 border-slate-300 rounded-lg text-lg text-slate-200 p-4 my-2">Drag and drop US</div>
+    {% endif %}
+
+
+
+
+<button id="add-bl" class="absolute right-0 top-0 text-slate-400 text-sm flex p-4"><span class="fa fa-plus"></span></button>
+
+
+
     <hr class="mb-4">
     {% for us in Project.pbl.us.all %}
     <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex">
@@ -43,14 +58,13 @@ Projets
     
     <hr class="mb-4">
     <div class="bg-white rounded-lg px-2 py-2 mb-2 shadow-md flex">
-      {% include 'form_template.html' with action="/dashboard/projects/"|add:Project btn_label='Ajouter us' name_action='add_us' form=forms.add_us displayform='horizontal' %}
-      <br><br><br>
+      {% include 'form_template.html' with action="/dashboard/projects/"|add:Project btn_label='Ajouter us' name_action='add_us' form=forms.add_us  %}
     </div>
 
 
 
     {% for us in Project.us.all %}
-    <div class="bg-white rounded-full px-2 py-2 mb-2 shadow-md flex relative">
+    <div class="bg-white rounded-full px-3 py-1 mb-2 shadow-md flex relative">
     <a href="{% url 'us_detail' us_id=us.id %}" class="fa fa-eye mr-4 mt-1 text-slate-400"></a>
     <h1>{{us.name}} {{us.i_want}} ==> {{us.in_order_to}}</h1>
       <div class="absolute right-0 mr-4">

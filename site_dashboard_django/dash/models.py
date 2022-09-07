@@ -10,6 +10,9 @@ class Task(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=30)
     end_date = models.DateField(blank=True, null=True)
+    when_begin = models.DateTimeField(blank=True, null=True, default=datetime.now)
+    when_end = models.DateTimeField(blank=True, null=True, default=datetime.now)
+
     def __str__(self):
         return self.name
 
